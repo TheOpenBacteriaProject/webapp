@@ -9,6 +9,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
+    .parent {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+    .image1 {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    .image2 {
+        position: absolute;
+        top:0;
+        left:0;
+    }
   
   	.dropbtn {
     background-color: #4CAF50;
@@ -97,7 +112,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" href="#">Bacteria Project</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -146,13 +161,19 @@
           <button style="font-size:24px"><i class="fa fa-backward"></i></button>
           <button style="font-size:24px"><i class="fa fa-play"></i></button>
           <button style="font-size:24px"><i class="fa fa-pause"></i></button>
-          <button style="font-size:24px"><i class="fa fa-forward"></i></button>
+          <button onclick="myFunction()" style="font-size:24px"><i class="fa fa-forward"></i></button>
       </div>
       
       <hr>
       
-      <div align="center">
-		<img src="https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/petri_vacia.png?raw=true" alt="petrivacia" width="500">
+      
+        <div class="parent">
+          <div align="center">
+            <img id="base" class="image1" src="https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/petri_vacia.png?raw=true" alt="petrivacia" width="500">
+          </div>
+          <div align="center">
+          	<p id="demo"></p>
+       	  </div>
       </div>
       
       <hr>
@@ -185,5 +206,14 @@
   <p>Created by <a href="https://github.com/TheOpenBacteriaProject/">Bateria Project</a></p>
 </footer>
 
+
+<script>
+
+  function myFunction() {
+      document.getElementById("demo").innerHTML = '<img id="base" class="image2" src="https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/bacterias1.png?raw=true" alt="petrivacia" width="500">';
+  }
+
+</script>
 </body>
+
 </html>
