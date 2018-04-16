@@ -11,10 +11,10 @@ class Bacterium(models.Model):
     ('ANAEROBIC','anaerobic'),
     ('AEROBIC','aerobic')
     )
-    baterium_type = models.CharField(max_length = 12, choices=BACTERIUM_TYPE)
+    bacterium_type = models.CharField(max_length = 12, choices=BACTERIUM_TYPE)
     ideal_temperature = models.DecimalField(max_digits=3,decimal_places=2)
     ideal_humidity = models.DecimalField(max_digits=3,decimal_places=1)
-    ideal_acidity = models.DecimalField(max_digits=2,decimal_places=2)
+    ideal_acidity = models.DecimalField(max_digits=3,decimal_places=2)
     ideal_oxygen = models.DecimalField(max_digits=3,decimal_places=1)
     description = models.TextField()
     def __str__(self):
@@ -41,7 +41,7 @@ class User(models.Model):
     nickname = models.CharField(max_length = 25, unique=True)
     email = models.EmailField()
     password = models.CharField(max_length = 50) #Habra que encriptarla o lo hace djgango?
-    slug = models.SlugField(max_length=30,unique=True,help_text='A label for URL config')
+    slug = models.SlugField(max_length=30, unique=True, help_text='A label for URL config')
     mad_experiments = models.ManyToManyField(Experiment)
     def __str__(self):
         return self.nickname
