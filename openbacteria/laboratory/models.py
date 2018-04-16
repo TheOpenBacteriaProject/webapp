@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Bacterium(models.Model):
-    name = models.CharField(max_length = 50, db_index=True)
+    name = models.CharField(max_length = 50, unique=True)
     #Clasifico las baterias por el tipo de respiracion que tienen. No es realmente importante, pero es un detalle.
     BACTERIUM_TYPE = (
     (ANAEROBIC,'anaerobic'),
@@ -25,7 +25,7 @@ class Bacterium(models.Model):
 class Experiment(models.Model):
     name = CharField(max_length = 100, unique=True)
     slug = SlugField(max_length=30,help_text='A label for URL config') #Esto es para configurar las URLs y que se vean guays.
-    bacterium = models.ForeignKey(Bacterium,on_delete=models.CASCADE) #No estoy muy seguro que ese on_delete. Tengo que revisarlo
+    bacterium = models.ForeignKey(Bacterium,on_delete=models.CASCADE)
     experiment_temperature = models.DecimalField(max_digits=3,decimal_places=2)
     experiment_humidity = models.DecimalField(max_digits=3,decimal_places=1)
     experiment_acidity = models.DecimalField(max_digits=2,decimal_places=2)
