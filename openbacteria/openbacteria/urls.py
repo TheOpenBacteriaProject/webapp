@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+
+#App imports
+from laboratory.views import mostrar_bacterias
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('bacterias/', mostrar_bacterias),
 ]
