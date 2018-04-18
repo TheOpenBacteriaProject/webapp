@@ -28,7 +28,7 @@ class Experiment(models.Model):
     bacterium = models.ForeignKey(Bacterium,on_delete=models.CASCADE)
     experiment_temperature = models.DecimalField(max_digits=3,decimal_places=2)
     experiment_humidity = models.DecimalField(max_digits=3,decimal_places=1)
-    experiment_acidity = models.DecimalField(max_digits=2,decimal_places=2)
+    experiment_acidity = models.DecimalField(max_digits=3,decimal_places=2)
     experiment_oxygen = models.DecimalField(max_digits=3,decimal_places=1)
     description = models.TextField()
     def __str__(self):
@@ -36,6 +36,12 @@ class Experiment(models.Model):
     class Meta:
         ordering = ['name']
         unique_together = ('bacterium','name') #Representa la relacion de entidad debil entre Experiment y Bacterium.
+
+class Image(models.Model):
+    theimage = models.ImageField(upload_to='img',null = True)
+    from_experiment = models.ForeignKey(Experiment,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.theimage
 
 class User(models.Model):
     nickname = models.CharField(max_length = 25, unique=True)

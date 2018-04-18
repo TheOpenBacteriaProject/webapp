@@ -12,3 +12,7 @@ def mostrar_bacterias(request):
     output += '\n'
     output += ', '.join([bacteria.description for bacteria in lista_bacterias])
     return HttpResponse(output)
+
+
+def mostrar_index(request):
+    return render(request, 'laboratory/index.html')

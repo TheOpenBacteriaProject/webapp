@@ -1,0 +1,15 @@
+<!--Mostrar experimento-->
+<!--Despliega las iamgenes -->
+
+<h2>{{experiment.name}}</h2>
+
+  <section>
+    <ul>
+      {% for imagen in experiment.image_set.all %}
+        <li>
+          <img src="../{{ imagen.theimage.url }}">
+        </li>
+      {% endfor %}
+    </ul>
+
+  </section>
