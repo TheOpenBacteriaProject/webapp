@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 
 #App imports
-from laboratory.views import mostrar_bacterias, mostrar_index
+from laboratory.views import *
 
 
 urlpatterns = [
-    path('index/', mostrar_index),
-    path('admin/', admin.site.urls),
-    path('bacterias/', mostrar_bacterias),
+    path(r'', mostrar_index),
+    path(r'logear_usuario_en_index/',login_user),
+    path(r'registrar_usuario_en_index/',register_user),
+    path(r'admin/', admin.site.urls),
+    path(r'laboratorio/', crear_laboratorio),
 ]

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+<!--HEAD-->
   <head>
 
     <style>
@@ -97,24 +98,30 @@
 
     </style>
   </head>
-  	
+
+<!--Body pa tos-->
   <body>
 
-    <form method="post" action="index.html">
     <div class="box">
     <h1>Login</h1>
 
-    <input type="email" name="email" value="The open bacteria project" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
+    <form action="/logear_usuario_en_index/" method="post">
 
-    <input type="password" name="email" value="" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
+    <input id = "usuario"  type="text" name="Introducir usuario"  value="" onFocus="field_focus(this, 'email');" class="email"/>
 
-    <a href="#"><div class="btn">Sign In</div></a> <!-- End Btn -->
+    <input id = "password" type="password" name="Introducir password" value="" onFocus="field_focus(this, 'email');" class="email"/>
 
-    <a href="#"><div id="btn2">Sign Up</div></a> <!-- End Btn2 -->
+    <div > <input type="submit"  value="Sign Up" class="btn"> </div>
+
+    </form>
+
+    <form action="/registrar_usuario_en_index/" method="post">
+    <div > <input type="submit"  value="Sign In" class="btn"> </div>
+    </form>
 
     </div> <!-- End Box -->
 
-    </form>
+
 
     <p>Forgot your password? <u style="color:#f1c40f;">Click Here!</u></p>
 
