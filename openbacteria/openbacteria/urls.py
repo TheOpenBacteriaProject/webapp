@@ -23,7 +23,8 @@ from laboratory.views import *
 urlpatterns = [
     path(r'', mostrar_index),
     path(r'logear_usuario_en_index/',login_user),
-    path(r'registrar_usuario_en_index/',register_user),
+    path(r'ir_a_registro/',mostrar_registro),
+    path(r'registrar_usuario/',register_user),
     path(r'admin/', admin.site.urls),
     path(r'laboratorio/', crear_laboratorio),
 ]

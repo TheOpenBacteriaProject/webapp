@@ -14,21 +14,19 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATIC_URL = '/static/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ')(of!%p!zp9r$z+4l^ykx6&zo=8f%*y0tltzn-$7h$)5(bovsb'
-
+STATIC_URL = '/static/'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
-STATICFILES_DIRS = (
-  os.path.join(SITE_ROOT, 'static/'),
-)
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -56,7 +54,7 @@ ROOT_URLCONF = 'openbacteria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['laboratory/templates/laboratory'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
