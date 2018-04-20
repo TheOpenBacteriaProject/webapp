@@ -37,10 +37,10 @@ class Experiment(models.Model):
         return self.name
     class Meta:
         ordering = ['name']
-        unique_together = ('bacterium','name') #Representa la relacion de entidad debil entre Experiment y Bacterium.
+        unique_together = ('bacterium','name','usuario') #Representa la relacion de entidad debil entre Experiment y Bacterium.
 
 class Image(models.Model):
-    theimage = models.ImageField(upload_to='img',null = True)
+    theimage = models.ImageField(upload_to='img/',null = True)
     from_experiment = models.ForeignKey(Experiment,on_delete=models.CASCADE)
     def __str__(self):
-        return self.theimage
+        return self.theimage.url

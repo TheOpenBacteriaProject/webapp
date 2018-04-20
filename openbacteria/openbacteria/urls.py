@@ -18,13 +18,21 @@ from django.urls import path
 
 #App imports
 from laboratory.views import *
+from . import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+
 
 
 urlpatterns = [
     path(r'', mostrar_index),
     path(r'logear_usuario_en_index/',login_user),
     path(r'ir_a_registro/',mostrar_registro),
-    path(r'registrar_usuario/',register_user),
     path(r'admin/', admin.site.urls),
     path(r'laboratorio/', crear_laboratorio),
-]
+    path(r'basic_laboratorio/',laboratorio_basico),
+    ]
+
+#urlpatterns += staticfiles_urlpatterns()
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

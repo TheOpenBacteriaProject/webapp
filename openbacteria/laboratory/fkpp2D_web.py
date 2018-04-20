@@ -25,7 +25,7 @@ from pylab import meshgrid,cm,imshow,contour,clabel,colorbar,axis,title,show,sav
 import matplotlib.colors as mcolors
 import sys
 import matplotlib.pyplot as plt
-
+from .models import Image
 #Describimos el algoritmo prinicipal.
 #La funcion recibe tres parametros
 #1º u  => Matriz de datos
@@ -115,8 +115,9 @@ def guardar_imagen(u,contador,usuario, nombre_experimento):
                 colorbar(im) # Añadimos la barra de color a la derecha
         title('concetracion bacterias')
         #La ruta sera: static/laboratory/user/experiment/image+contador
-        name = "static/laboratory/"+ usuario + "/" + nombre_experimento + "imagen" + str(contador)
-        savefig(fname=name,format=png)
+        name = "/home/espectro/Escritorio/openbacteria/laboratory/static/laboratory/"+ usuario + "/" + nombre_experimento +"-"+ "imagen" +"-"+ str(contador)
+        savefig(name)
+        imagen = Image()
         plt.clf()
         plt.cla()
         plt.close()

@@ -11,32 +11,10 @@
 
     <body>
 
-        <form action="/registrar_usuario/" method="post" style="border:1px solid #ccc">
+        <form action="/" method="post">
         {% csrf_token %}
-          <div class="container">
-            <h1>Registro</h1>
-            <p>Por favor introduzca los datos para crear su cuenta</p>
-            <hr>
-
-            <label for="user"><b>Usuario</b></label>
-            {{form.username}}
-            <input id="usuario" type="text" placeholder="Usuario" name="user" required>
-
-            <label for="email"><b>Correo electronico</b></label>
-            {{form.email}}
-            <input id="email" type="text" placeholder="Introduzca el correo electronico" name="email" required>
-
-            <label for="psw"><b>Contraseña</b></label>
-            {{form.password}}
-            <input id="password"type="password" placeholder="Introduzca la contraseña" name="psw" required>
-
-            <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-
-            <div class="clearfix">
-              <button type="submit" class="signupbtn">Registrame</button>
-              <button type="button" class="cancelbtn">Cancel</button>
-            </div>
-          </div>
+        {{ form.as_p}}
+         <input type="submit" value="Registrase" />
         </form>
 
     </body>

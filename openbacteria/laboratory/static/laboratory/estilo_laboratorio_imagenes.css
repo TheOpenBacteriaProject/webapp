@@ -9,6 +9,7 @@ body {
 
 img {
   vertical-align: middle;
+  border-radius: 50%;
 }
 
 /* Position the image container (needed to position the left and right arrows) */
@@ -19,6 +20,7 @@ img {
 /* Hide the images by default */
 .mySlides {
   display: none;
+
 }
 
 /* Add a pointer when hovering over the thumbnail images */
