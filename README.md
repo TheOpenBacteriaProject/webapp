@@ -3,9 +3,13 @@
 En este repositorio podéis encontrar toda la informacion del desarrollo de nuestra aplicación web. Esta aplicacion funciona practicamente como una red social y a la vez un laboratorio de experimentación abierta. Aunque no poseamos servers para lanzar la app ( debido a que estos cuestan  un dinero que no tenemos) podéis ejecutar nuestros archivos en local para una demo de como funciona. Hemos investigado y desarrollado duro para hacer una app minimalista y funcional pero que a la vez cuente con estándares de calidad altos, y que sea escalable, para que (como prentendemos hacer ne un futuro) podemos ofrecerla a Internet con la mejor de las garantías.
 
 ## Diseño de la app:
-
+### Version 1.0
 ![](https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/2018-03-11%2021_57_15-Tryit%20Editor%20v3.5.png?raw=true)
-
+### Version 2.0
+![](https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/photo_2018-04-20_21-52-10.jpg?raw=true)
+Fully functional right now. Execute it in local. Tutorial video will be found in the section "How to".
+### Version 3.0 
+Minor changes will be done to adapt it to the demostration part of the presentation. Stay tuned!
 ## Diagrama entidad relación:
 ![](https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/Entidad_Relaci%C3%B3n.jpg)
 
