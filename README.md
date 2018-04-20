@@ -10,4 +10,6 @@ En este repositorio podéis encontrar toda la informacion del desarrollo de nues
 ![](https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/Entidad_Relaci%C3%B3n.jpg)
 
 ## How to
-Pensamos que la mejor forma de transmitir las bases de esta parte del proyecto es a traves de una serie de videos educativos, donde se expliquen los avanzados conceptos informáticos que hemos llevado a cabo, así como un tutorial de uso.
+Pensamos que la mejor forma de transmitir las bases de esta parte del proyecto es a traves de una serie de vídeos educativos, donde se expliquen los conceptos informáticos que hemos llevado a cabo, así como un tutorial de uso. Sólo haz click en la imagen y te llevará al vídeo en YouTube.
+
+[![](https://img.youtube.com/vi/Vh8hHrsI8_E/0.jpg)](https://www.youtube.com/watch?v=Vh8hHrsI8_E)
