@@ -9,113 +9,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-
-  	input[type=text] {padding:5px; border:2px solid #ccc;
--webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-input[type=text]:focus {border-color:#333; }
-
-input[type=submit] {padding:5px 15px; background:#ccc; border:0 none;
-    cursor:pointer;
-    -webkit-border-radius: 5px;
-    border-radius: 5px; }
-    .parent {
-      position: relative;
-      top: 0;
-      left: 0;
-    }
-    .image1 {
-        position: relative;
-        top: 0;
-        left: 0;
-    }
-    .image2 {
-        position: absolute;
-        top:0;
-        left:230px;
-    }
-
-  	.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown-content a:hover {background-color: #ddd}
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-        background-color: #3e8e41;
-    }
-    /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
-    }
-
-    button {
-
-    background: transparent;
-    border: none !important;
-	}
-  </style>
+  {% load static %}
+  <link rel="stylesheet" href="{% static "laboratory/estilo_laboratorio.css" %}"/>
+  <link rel="stylesheet" href="{% static "laboratory/estilo_laboratorio_imagenes.css" %}"/>
+  <script src="{% static "laboratory/imagenes_laboratorio.js" %}"></script>
 </head>
 <body>
 
+<!--Parte de arriba de la pagina web-->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -140,33 +41,41 @@ input[type=submit] {padding:5px 15px; background:#ccc; border:0 none;
   </div>
 </nav>
 
+
+<!--Parte izquierda-->
 <div class="container-fluid text-center">
   <div class="row content">
+
     <div class="col-sm-2 sidenav">
 
-      <div class="dropdown">
-      <button class="dropbtn">Project</button>
-        <div class="dropdown-content">
-          <a href="#">Created project 1</a>
-          <a href="#">Super awesome project 2</a>
-          <a href="#">Alien bacteria to kill everyone</a>
+        <div class="dropdown">
+        <button class="dropbtn">Cargar un proyecto</button>
+          <div class="dropdown-content">
+            <!--Aqui estan todos los proyectos del usuario. Hay que generarlos-->
+            <a href="#">From scratch</a>
+            <a href="#">Petri from base A</a>
+            <a href="#">Petri from base A</a>
+          </div>
         </div>
+      <br><br/>
+      <div>
+          <h4>Crea un nuevo poryecto aqui</h4>
+          <form action="/laboratorio/" method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Submit" />
+          </form>
       </div>
 
-      <div class="dropdown">
-      <button class="dropbtn">Create new petri</button>
-        <div class="dropdown-content">
-          <a href="#">From scratch</a>
-          <a href="#">Petri from base A</a>
-          <a href="#">Petri from base A</a>
-        </div>
-      </div>
+
      </div>
+
+
+
 
     <div class="col-sm-8 text-left">
       <div align="center">
-      	<h1>{{frase}}</h1>
-        <p>{{frase2}}</p>
+      	<h1>{{frase}}</h1> <!--Aqui sale el nombre del experimento cuando es seleccionado-->
       </div>
 
       <div align="center">
@@ -179,27 +88,49 @@ input[type=submit] {padding:5px 15px; background:#ccc; border:0 none;
       <hr>
 
 
-        <div class="parent">
-          <div align="center">
-            <img id="base" class="image1" src="https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/petri_vacia.png?raw=true" alt="petrivacia" width="500">
-          </div>
-          <div align="center">
-          	<p id="demo"></p>
-       	  </div>
-      </div>
+<!--Antigua imagen de la placa petri-->
+<!--
+<div class="parent">
+  <div align="center">
+    <img id="base" class="image1" src="https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/petri_vacia.png?raw=true" alt="petrivacia" width="500">
+  </div>
+  <div align="center">
+    <p id="demo"></p>
+  </div>
+</div>
+-->
+    <!--Nuevo centro-->
 
+    <div class="parent">
+        <div align="center">
+            <!--Aqui va la imagen central-->
+        </div>
+    </div>
+    <div class="parent">
+        <div align="center">
+
+    <div class="row">
+        <div class="column">
+        </div>
+    </div>
+
+        </div>
+    </div>
+
+<!--Linea del tiempo-->
       <hr>
       <h3>AQUI VA LA LINEA DEL TIEMPO</h3>
       <p>LINEA BONITA</p>
     </div>
 
+<!--Parte de derecha-->
     <div class="col-sm-2 sidenav">
 
       <div class="well">
           <form action="/html/tags/html_form_tag_action.cfm" method="post">
   				Save a comment:<br />
   					<textarea name="comments" id="comments">
- 						 Mi bacteria asesina crece muy bien! está todo listo
+ 
   					</textarea><br />
   		  		    <input type="submit" value="Save it!" />
   		  </form>
@@ -220,6 +151,7 @@ input[type=submit] {padding:5px 15px; background:#ccc; border:0 none;
   </div>
 </div>
 
+<!--Parte de abajo-->
 <footer class="container-fluid text-center">
   <p>Created by <a href="https://github.com/TheOpenBacteriaProject/">Bateria Project</a></p>
 </footer>

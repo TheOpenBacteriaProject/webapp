@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 #Experiment es una entidad debil de bacterium
 #User tiene una relacion muchos a muchos con Experiment
 
@@ -13,10 +13,10 @@ class Bacterium(models.Model):
     ('AEROBIC','aerobic')
     )
     bacterium_type = models.CharField(max_length = 12, choices=BACTERIUM_TYPE)
-    ideal_temperature = models.DecimalField(max_digits=3,decimal_places=2)
-    ideal_humidity = models.DecimalField(max_digits=3,decimal_places=1)
-    ideal_acidity = models.DecimalField(max_digits=3,decimal_places=2)
-    ideal_oxygen = models.DecimalField(max_digits=3,decimal_places=1)
+    ideal_temperature = models.DecimalField(max_digits=4,decimal_places=2)
+    ideal_humidity = models.DecimalField(max_digits=4,decimal_places=2)
+    ideal_acidity = models.DecimalField(max_digits=4,decimal_places=2)
+    ideal_oxygen = models.DecimalField(max_digits=4,decimal_places=2)
     description = models.TextField()
     def __str__(self):
         return self.name
@@ -25,12 +25,13 @@ class Bacterium(models.Model):
 
 class Experiment(models.Model):
     name = models.CharField(max_length = 100, unique=True)
-    slug = models.SlugField(max_length=30,help_text='A label for URL config') #Esto es para configurar las URLs y que se vean guays.
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE) #Usa auth de django
+    slug = models.SlugField(max_length=30,help_text='A label for URL config')
     bacterium = models.ForeignKey(Bacterium,on_delete=models.CASCADE)
-    experiment_temperature = models.DecimalField(max_digits=3,decimal_places=2)
-    experiment_humidity = models.DecimalField(max_digits=3,decimal_places=1)
-    experiment_acidity = models.DecimalField(max_digits=3,decimal_places=2)
-    experiment_oxygen = models.DecimalField(max_digits=3,decimal_places=1)
+    experiment_temperature = models.DecimalField(max_digits=4,decimal_places=2)
+    experiment_humidity = models.DecimalField(max_digits=4,decimal_places=2)
+    experiment_acidity = models.DecimalField(max_digits=4,decimal_places=2)
+    experiment_oxygen = models.DecimalField(max_digits=4,decimal_places=2)
     description = models.TextField()
     def __str__(self):
         return self.name
@@ -43,28 +44,3 @@ class Image(models.Model):
     from_experiment = models.ForeignKey(Experiment,on_delete=models.CASCADE)
     def __str__(self):
         return self.theimage
-
-class User(models.Model):
-    nickname = models.CharField(max_length = 25, unique=True)
-    email = models.EmailField()
-    password = models.CharField(max_length = 50) #Habra que encriptarla o lo hace djgango?
-    slug = models.SlugField(max_length=30, unique=True, help_text='A label for URL config')
-    mad_experiments = models.ManyToManyField(Experiment)
-    def __str__(self):
-        return self.nickname
-    class Meta:
-        ordering = ['nickname']
-
-class Repo(models.Model):
-    author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
-
-    def str(self):
-        return self.title
