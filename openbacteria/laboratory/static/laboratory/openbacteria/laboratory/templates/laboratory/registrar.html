@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Registrate</title>
+        <meta charset="uft-8">
+        {% load static %}
+        <link rel="stylesheet" href="{% static "laboratory/estilo_registro.css" %}"/>
+    </head>
+
+    <body>
+
+        <form action="/" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+         <input type="submit" value="Registrase" />
+        </form>
+
+    </body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<!--HEAD-->
+  <head>
+    <title>The open bacteria project</title>
+    <meta charset="uft-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "laboratory/estilo_usuario.css" %}"/>
+  </head>
+
+<!--Body pa tos-->
+  <body>
+
+    <div class="box">
+    <h1>Login</h1>
+
+    <form action="/logear_usuario_en_index/" method="post">
+    {% csrf_token %}
+    <label for="email"><b>Usuario</b></label>
+    <input id = "usuario"  type="text" name="Introducir usuario"  value="" onFocus="field_focus(this, 'email');" class="email"/>
+
+    <label for="email"><b>Contraseña</b></label>
+    <input id = "password" type="password" name="Introducir password" value="" onFocus="field_focus(this, 'email');" class="email"/>
+
+    <div > <input type="submit"  value="Sign Up" class="btn"> </div>
+
+    </form>
+
+    <form action="/ir_a_registro/" method="post">
+    {% csrf_token %}
+    <div > <input type="submit"  value="Sign In" class="btn"> </div>
+    </form>
+
+    </div> <!-- End Box -->
+
+
+
+    <p>Forgot your password? <u style="color:#f1c40f;">Click Here!</u></p>
+
+  </body>
+</html>

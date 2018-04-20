@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ titulo }}</title> <!--El titulo sera el nombre de usuario-->
+
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "laboratory/estilo_laboratorio_imagenes.css" %}"/>
+    <meta charset="utf-8">
+    <script src="{% static "laboratory/imagenes_laboratorio.js" %}"></script>
+</head>
+
+<body>
+    <h2 style="text-align:center">{{ experimento.name }}</h2>
+    <script>
+    var slideIndex = 1;
+    var contador = 1;
+    showSlides(slideIndex);
+    </script>
+    <!--Genero la imagen-->
+    <div class="container">
+
+        <!--Hay que generar esto por cada foto que tenga el experimento-->
+        {% for img in imagenes %}
+        {%load static%}
+        <div class="mySlides">
+            <center><img src="{{img.theimage.name}}"  style="width:30%;" ></center>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="row">
+        {% for img in imagenes %}
+        {%load static%}
+        <div class="column">
+            <img class="demo cursor" src="{{ img.theimage.name }}" style="width:100%" onclick="currentSlide('{{forloop.counter}}')" alt="The open bacteria project">
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
