@@ -63,7 +63,13 @@ def FKPP(u,nt,v,precision,usuario,nombre_experimento):
     x = numpy.linspace(-5, 5, nx)
     y = numpy.linspace(-5, 5, ny)
     if u == 0:
-        u = numpy.ones((50, 50))
+        u = numpy.ones((ny, nx))
+        u[int(3.5/dy):int(4.0/dy+1),int(3.5/dx):int(4.0/dx+1)] = 2
+        u[int(8./dy):int(8.5/dy+1),int(6.0/dx):int(6.5/dx+1)] = 2
+        for i in range(0,nx):
+            for j in range(0,nx):
+                if u[i][j]!=2:
+                    u[i][j]=0 ##Nos aseguramos de que no haya bacterias en ningun otro punto
     #Ciclo para la evolucion descrita en la documentación.
     for n in range(nt + 1):
         un = u.copy()
@@ -115,7 +121,7 @@ def guardar_imagen(u,contador,usuario, nombre_experimento):
                 colorbar(im) # Añadimos la barra de color a la derecha
         title('concetracion bacterias')
         #La ruta sera: static/laboratory/user/experiment/image+contador
-        name = "/home/espectro/Escritorio/openbacteria/laboratory/static/laboratory/"+ usuario + "/" + nombre_experimento +"-"+ "imagen" +"-"+ str(contador)
+        name = "/home/espectro/Escritorio/openbacteria/laboratory/static/laboratory/"+ usuario + "/" + nombre_experimento + "/"+ nombre_experimento +"-"+ "imagen" +"-"+ str(contador)
         savefig(name)
         imagen = Image()
         plt.clf()

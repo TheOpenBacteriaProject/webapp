@@ -15,21 +15,22 @@
     <div class="box">
     <h1>Login</h1>
 
-    <form action="/logear_usuario_en_index/" method="post">
-    {% csrf_token %}
+
+
     <label for="email"><b>Usuario</b></label>
-    <input id = "usuario"  type="text" name="Introducir usuario"  value="" onFocus="field_focus(this, 'email');" class="email"/>
+    <input id = "usuario"  type="text" name="Introducir usuario"  value="" onFocus="field_focus(this, 'email');" class="email" style="color:orange"/>
 
     <label for="email"><b>Contraseña</b></label>
-    <input id = "password" type="password" name="Introducir password" value="" onFocus="field_focus(this, 'email');" class="email"/>
-
-    <div > <input type="submit"  value="Sign Up" class="btn"> </div>
+    <input id = "password" type="password" name="Introducir password" value="" onFocus="field_focus(this, 'email');" class="email" style="color:blue"/>
+    <form action="/laboratorio/" method="POST">
+      {% csrf_token %}
+    <div > <input type="submit"  value="Login" class="btn"> </div>
 
     </form>
 
     <form action="/ir_a_registro/" method="post">
     {% csrf_token %}
-    <div > <input type="submit"  value="Sign In" class="btn"> </div>
+    <div > <input type="submit"  value="Sign Up" class="btn"> </div>
     </form>
 
     </div> <!-- End Box -->

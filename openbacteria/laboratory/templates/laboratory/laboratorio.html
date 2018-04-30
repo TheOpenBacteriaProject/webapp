@@ -16,96 +16,77 @@
 </head>
 <body>
 
-<!--Parte de arriba de la pagina web-->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Bacteria Project</a>
+  <!--Parte de arriba de la pagina web-->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      </div>
+
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">How-to</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Share</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <a class="navbar-brand-2" href="https://github.com/TheOpenBacteriaProject">The Open Bacteria Project</a>
+  </nav>
 
 
 <!--Parte izquierda-->
 <div class="container-fluid text-center">
-  <div class="row content">
-
+  <div class="row content" style="height:100%;">
     <div class="col-sm-2 sidenav">
-
-        <div class="dropdown">
-        <button class="dropbtn">Cargar un proyecto</button>
-          <div class="dropdown-content">
-            <!--Aqui estan todos los proyectos del usuario. Hay que generarlos-->
-            <a href="#">From scratch</a>
-            <a href="#">Petri from base A</a>
-            <a href="#">Petri from base A</a>
-          </div>
-        </div>
-      <br><br/>
       <div>
-          <h4>Crea un nuevo experiento aqui</h4>
+          <h4>Crea un nuevo experimento</h4>
           <form action="/laboratorio/" method="post">
           {% csrf_token %}
           {{ form.as_p }}
-          <input type="submit" value="Do it!" />
+          <input type="submit" value="Crear experimento" />
           </form>
       </div>
-
-
      </div>
-
-
-
 
     <div class="col-sm-8 text-left">
       <div align="center">
       	<h1>{{frase}}</h1> <!--Aqui sale el nombre del experimento cuando es seleccionado-->
-      </div>
-
-      <div align="center">
-          <button style="font-size:24px"><i class="fa fa-backward"></i></button>
-          <button style="font-size:24px"><i class="fa fa-play"></i></button>
-          <button style="font-size:24px"><i class="fa fa-pause"></i></button>
-          <button onclick="myFunction()" style="font-size:24px"><i class="fa fa-forward"></i></button>
+        <h2>{{usuario}}</h2>
       </div>
 
       <hr>
 
 
-<!--Antigua imagen de la placa petri-->
-<!--
-<div class="parent">
-  <div align="center">
-    <img id="base" class="image1" src="https://github.com/TheOpenBacteriaProject/webapp/blob/master/images/petri_vacia.png?raw=true" alt="petrivacia" width="500">
-  </div>
-  <div align="center">
-    <p id="demo"></p>
-  </div>
-</div>
--->
     <!--Nuevo centro-->
     <!--Referencia para hacer el codigo de la galeria: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_gallery-->
-    <div class="parent">
+        <script>
+          var slideIndex = 1;
+          var contador = 1;
+          showSlides(slideIndex);
+        </script>
         <div align="center">
-            <!--Aqui va la imagen central-->
+          <div class="container">
+
+              <!--Hay que generar esto por cada foto que tenga el experimento-->
+              {%load static%}
+              {% for img in imagenes %}
+              <div class="mySlides">
+                  <center><img src="{{img.theimage}}"  style="width:40%;" ></center>
+              </div>
+              {% endfor %}
+
+          </div>
+
+          <div class="row">
+              {% for img in imagenes %}
+              {%load static%}
+
+              <div class="column">
+                  <img class="demo cursor" src="{{ img.theimage }}" style="width:100%" onclick="currentSlide('{{forloop.counter}}')" alt="The open bacteria project">
+              </div>
+              {% endfor %}
+          </div>
         </div>
-    </div>
+
     <div class="parent">
         <div align="center">
 
@@ -119,31 +100,23 @@
 
 <!--Linea del tiempo-->
       <hr>
-      <h3>AQUI VA LA LINEA DEL TIEMPO</h3>
-      <p>LINEA BONITA</p>
+      <!--<h3>AQUI VA UNA BARRA PARA CAMBIAR DE IMAGEN</h3>-->
     </div>
 
 <!--Parte de derecha-->
     <div class="col-sm-2 sidenav">
 
       <div class="well">
-          <form action="/html/tags/html_form_tag_action.cfm" method="post">
-  				Save a comment:<br />
-  					<textarea name="comments" id="comments">
-
-  					</textarea><br />
-  		  		    <input type="submit" value="Save it!" />
-  		  </form>
+        <div class="dropdown">
+          <button class="dropbtn">Cargar un proyecto</button>
+            <div class="dropdown-content">
+              <!--Aqui estan todos los proyectos del usuario. Hay que generarlos-->
+              <a href="#">Top secret experiment</a>
+              <a href="http://127.0.0.1:8000/laboratorio_demo/">Experiemnto-nuevo</a>
+            </div>
+        </div>
       </div>
 
-      <div class="well">
-        <form action="/html/tags/html_form_tag_action.cfm" method="get">
-          Petri name:
-            <br />
-          <input type="text" name="first_name" value="" maxlength="100" />
-          <br />
-          <input type="submit" value="Save name" />
-      </form>
       </div>
 
     </div>
@@ -152,8 +125,8 @@
 </div>
 
 <!--Parte de abajo-->
-<footer class="container-fluid text-center">
-  <p>Created by <a href="https://github.com/TheOpenBacteriaProject/">Bateria Project</a></p>
+<footer class="container-fluid text-center" style="bottom:0;" style="position:fixed;">
+  <p>Created by <a href="https://github.com/TheOpenBacteriaProject/" style="color:orange;">The Open Bateria Project</a></p>
 </footer>
 
 

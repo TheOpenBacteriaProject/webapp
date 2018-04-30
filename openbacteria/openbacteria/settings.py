@@ -21,10 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ')(of!%p!zp9r$z+4l^ykx6&zo=8f%*y0tltzn-$7h$)5(bovsb'
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/espectro/Escritorio/openbacteria/laboratory/static/'
+STATIC_ROOT = '/laboratory/static/'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-MEDIA_ROOT = '/home/espectro/Escritorio/openbacteria/laboratory/static/laboratory/Enrique/Enrique-django'
+MEDIA_URL = '/laboratory/'
+
 ALLOWED_HOSTS = []
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 

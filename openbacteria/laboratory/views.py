@@ -11,7 +11,7 @@ from .forms import crear_experimento_en_web, registrar_usuario_modificado
 
 #Funciones de registro y login
 def mostrar_index(request):
-    #FKPP(0,100,1,10,"Enrique","Enrique-django")
+    #FKPP(0,200,1,10,"Bart","experimento-demo")
     return render(request, 'laboratory/index.html')
 
 #Ni idea de que devuelve esto, pero tecnicamente el usuario
@@ -86,48 +86,90 @@ def mostrar_registro(request):
 
     return render(request,'registrar.html',context)
 
-
+#Crea el laboratorio
 def crear_laboratorio(request):
     if request.method == 'POST':
         form = crear_experimento_en_web(request.POST)
         if form.is_valid():
             nombre = form.cleaned_data['nombre']
             #Llamo a la funcion para crear el experimento
-            crear_experimento(
-                name =          nombre,
-                user =          User.objects.get(username='Enrique'),
-                slug =          form.cleaned_data['nombre'],
-                bacteria=       Bacterium.objects.get(name=form.cleaned_data['bacteria']),
-                temperature =   form.cleaned_data['temperatura'],
-                acidity =       form.cleaned_data['acidez'],
-                humidity =      form.cleaned_data['humedad'],
-                oxigen =        form.cleaned_data['oxigeno'],
-                description =   form.cleaned_data['descripcion']
-            )
+            form = crear_experimento_en_web()
+            experimento = Experiment.objects.get(name="Enrique-django") #Obtengo el experimento
+            imagenes = Image.objects.filter(from_experiment=experimento) #Obtengo las imagenes del experimento
+            frase = "Experimento: Top secret experiment"
+            usuario = "Usuario: Bart"
 
             context = {
-            'cargar_proyecto'   : "TRUE",
-            'frase'             : "Experimento",
-            'Temperatura'       : form.cleaned_data['temperatura'],
-            'Humedad'           : form.cleaned_data['acidez'],
-            'Oxigeno'           : form.cleaned_data['oxigeno'],
-            'Acidez'            : form.cleaned_data['acidez'],
-            'form'              : form
+            'form'          : form,
+            'experimento'   : experimento,
+            'imagenes'      : imagenes,
+            'frase'         : frase,
+            'usuario'          : usuario,
+
             }
+            return render(request,'laboratorio.html',context)
+        else:
+
+            form = crear_experimento_en_web()
+            experimento = Experiment.objects.get(name="Enrique-django") #Obtengo el experimento
+            imagenes = Image.objects.filter(from_experiment=experimento) #Obtengo las imagenes del experimento
+            frase = "Experimento: Top secret experiment"
+            usuario = "Usuario: Bart"
+            context = {
+            'form'          : form,
+            'experimento'   : experimento,
+            'imagenes'      : imagenes,
+            'frase'         : frase,
+            'usuario'          : usuario,
+
+            }
+
+            return render(request,'laboratorio.html',context)
+
     else:
 
         form = crear_experimento_en_web()
 
+        experimento = Experiment.objects.get(name="Enrique-django") #Obtengo el experimento
+        imagenes = Image.objects.filter(from_experiment=experimento) #Obtengo las imagenes del experimento
+        frase = "Top secret experiment"
+        usuario = "Bart"
         context = {
-        'frase'   : "Experimento",
-        'form'    : form
+        'form'          : form,
+        'experimento'   : experimento,
+        'imagenes'      : imagenes,
+        'frase'         : frase,
+        'usuario'       : usuario,
+
         }
+
+        return render(request,'laboratorio.html',context)
+
+#Crea el laboratorio demo
+def crear_laboratorio_demo(request):
+
+    form = crear_experimento_en_web()
+
+    experimento = Experiment.objects.get(name="experimento-demo") #Obtengo el experimento
+    imagenes = Image.objects.filter(from_experiment=experimento) #Obtengo las imagenes del experimento
+    frase = "Experimento-nuevo"
+    usuario = "Bart"
+    context = {
+        'form'          : form,
+        'experimento'   : experimento,
+        'imagenes'      : imagenes,
+        'frase'         : frase,
+        'usuario'       : usuario,
+
+        }
+
     return render(request,'laboratorio.html',context)
 
+#Metodo sin sentido ya. Dejarlo por ahora por si hace falta mirarlo pero borrarlo para el despliege
 def laboratorio_basico(request):
     experimento = Experiment.objects.get(name="Enrique-django") #Obtengo el experimento
     imagenes = Image.objects.filter(from_experiment=experimento) #Obtengo las imagenes del experimento
-    numero_imagenes = imagenes.count()
+
     context = {
     'experimento'   : experimento,
     'imagenes'      : imagenes,
