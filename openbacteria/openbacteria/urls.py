@@ -31,5 +31,4 @@ urlpatterns = [
     path(r'ir_a_registro/',mostrar_registro),
     path(r'admin/', admin.site.urls),
     path(r'laboratorio/', crear_laboratorio),
-    path(r'laboratorio_demo/',crear_laboratorio_demo),
     ]
