@@ -1,0 +1,49 @@
+Instalacion de OpentBacteria App en linux.
+
+1º Descargamos el repositorio desde github
+
+wget https://github.com/TheOpenBacteriaProject/webapp
+
+2º Ahora descomprimimos el .zip 
+
+unzip webapp-master.zip
+
+3º Nos movemos a la carpeta que se acabara de crear
+
+-> cd webapp-master/
+
+4º Copiamos la carpeta de open bacteria a la carpeta que deseemos.
+Con este comando la copiamos a la carpeta en la que se ha descargado el repositorio
+
+-> cp -r openbacteria/ ../
+
+Si lo que queremos es moverla en vez de copiarla
+
+-> mv openbacteria/ ../
+
+5º Ahora debemos instalar las librerias necesarias. Dentro de la carpeta del repositorio se encuentra una script que instala todas las dependencias de la aplicacion.
+
+-> sudo instalar_dependecias.sh
+
+6º Una vez que todo alla terminado de instalarse, nos movemos a la carpeta de la aplicacion
+
+-> cd ..
+-> cd openbacteria/
+
+7º Ejecutamos el servidor:
+
+-> python3 manage.py runserver
+
+
+8º Ahora, simplemente ponemos en el navegador (firefox,Chrome...)
+
+http://127.0.0.1:8000/ 
+
+O biee hacemos clik derecho en el enlaze que aparece en la terminal y click en "Abrir el enlace"
+
+
+Eso es todo. Para cualquier problema podeis contactar con nosotros por twiter o bien conmigo por
+correo electronico en: theopenbacteria@protonmail.com
+
+
+
