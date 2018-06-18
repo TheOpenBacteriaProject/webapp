@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import Bacterium, Experiment, Image
 from laboratory.fkpp2D_web import FKPP
 from django.views.decorators.csrf import ensure_csrf_cookie
-from .forms import crear_experimento_en_web, registrar_usuario_modificado
+from .forms import crear_experimento_en_web
 # Create your views here.
 
 #Funciones de registro y login
@@ -18,7 +18,7 @@ def mostrar_index(request):
 def get_queryset_actual_user(self):
     return Userproject.objects.filter(user=self.request.user)
 
-
+#Igual que generar_experimento pero de alguna forma disntinto D:
 def crear_experimento(name,user,slug,bacteria,temperature,acidity,humidity,oxigen,description):
     #Obtengo los datos para crear un experimento
     nombre = name
@@ -144,35 +144,3 @@ def crear_laboratorio(request):
         }
 
         return render(request,'laboratorio.html',context)
-
-#Crea el laboratorio demo
-def crear_laboratorio_demo(request):
-
-    form = crear_experimento_en_web()
-
-    experimento = Experiment.objects.get(name="experimento-demo") #Obtengo el experimento
-    imagenes = Image.objects.filter(from_experiment=experimento) #Obtengo las imagenes del experimento
-    frase = "Experimento-nuevo"
-    usuario = "Bart"
-    context = {
-        'form'          : form,
-        'experimento'   : experimento,
-        'imagenes'      : imagenes,
-        'frase'         : frase,
-        'usuario'       : usuario,
-
-        }
-
-    return render(request,'laboratorio.html',context)
-
-#Metodo sin sentido ya. Dejarlo por ahora por si hace falta mirarlo pero borrarlo para el despliege
-def laboratorio_basico(request):
-    experimento = Experiment.objects.get(name="Enrique-django") #Obtengo el experimento
-    imagenes = Image.objects.filter(from_experiment=experimento) #Obtengo las imagenes del experimento
-
-    context = {
-    'experimento'   : experimento,
-    'imagenes'      : imagenes,
-    'numero_imagenes' : numero_imagenes
-    }
-    return render(request,'basic_laboratory.html',context)
